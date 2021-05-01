@@ -1,7 +1,7 @@
 from starflake.game_objects.element import Element
 
-TABLE_WIDTH = 18
-TABLE_HEIGHT = 7
+TABLE_WIDTH = 8
+TABLE_HEIGHT = 5
 
 
 class PeriodicTable:
