@@ -1,7 +1,7 @@
 from starflake.game_objects.element import Element
 
-TABLE_WIDTH = 8
-TABLE_HEIGHT = 5
+GROUPS = 8
+PERIODS = 5
 
 
 class PeriodicTable:
@@ -15,7 +15,7 @@ class PeriodicTable:
         # This list is used to prevent the same symbol being added twice
         symbols = []
 
-        while len(elements) < (TABLE_WIDTH * TABLE_HEIGHT):
+        while len(elements) < (GROUPS * PERIODS):
             element = Element.random()
 
             if element.symbol not in symbols:
@@ -34,24 +34,32 @@ class PeriodicTable:
             return str(index + 1).zfill(2)
 
         # Begin with a header like "   01 02 03 04 05 …"
-        grid = "   " + " ".join(map(format_index, range(TABLE_WIDTH))) + "\n"
+        grid = "   " + " ".join(map(format_index, range(GROUPS))) + "\n"
 
-        for index, row in enumerate(self.table):
-            # Add the row number like "01 "
+        for index, period in enumerate(self.periods):
+            # Add the period number like "01 "
             grid += format_index(index) + " "
             # Add the symbols like "Ab Cd Ef Gh Ij …"
-            grid += " ".join(element.symbol for element in row) + "\n"
+            grid += " ".join(element.symbol for element in period) + "\n"
 
         # Remove the trailing newline
         return grid.strip("\n")
 
     @property
-    def table(self):
-        """A 2d array containing all elements in a grid layout."""
+    def periods(self):
+        """A 2d array containing each period as a nested list."""
 
-        table = []
+        periods = []
 
-        for i in range(0, len(self.elements), TABLE_WIDTH):
-            table.append(self.elements[i : i + TABLE_WIDTH])
+        for i in range(0, len(self.elements), GROUPS):
+            periods.append(self.elements[i : i + GROUPS])
 
-        return table
+        return periods
+
+    @property
+    def groups(self):
+        """A 2d array containing each group as a nested list."""
+
+        # This transposes self.periods by zipping together the nth item from
+        # each period, and converting the zipped tuples to lists
+        return map(list, zip(*self.periods))
