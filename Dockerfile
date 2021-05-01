@@ -1,8 +1,6 @@
 FROM python:3.9
 
 WORKDIR /usr/src/starflake
-# Data volume should be mounted here
-ENV HOME=/starflake
 
 # Install dependencies
 COPY setup.py README.md ./

@@ -1,32 +1,19 @@
 import logging
-import os.path
+import os
 
-import chickennuggets
-import discord
-import discordhealthcheck
-from discord.ext import commands
-
-# Setup logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from starflake.bot import StarflakeBot
 
 
 def launch():
     """Launch the Discord bot."""
-    # Set up Discord bot
-    logger.info("Setting up bot")
-    bot = commands.Bot(command_prefix="+")
 
-    # Load extensions
-    logger.info("Loading extensions")
-    chickennuggets.load(bot, ["help", "errors"])
+    logging.basicConfig(level=logging.INFO)
 
-    # Set up Docker health checks
-    discordhealthcheck.start(bot)
-
-    # Connect to Discord and start bot
-    logger.info("Starting bot")
-    bot.run(os.environ["DISCORD_TOKEN"])
+    bot = StarflakeBot(
+        os.environ["STARFLAKE_DIR"],
+        os.environ["DISCORD_TOKEN"],
+    )
+    bot.run()
 
 
 if __name__ == "__main__":
