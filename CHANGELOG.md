@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2021-05-01)
+### Feature
+* **PeriodicTable:** Reduce size of the periodic table ([`e4b2370`](https://github.com/danth/starflake/commit/e4b2370352f16085b122fe1f008d9bfb5751d364))
+* **Information:** Show group and period numbers ([`1710e3b`](https://github.com/danth/starflake/commit/1710e3bcef3cdd3ca31a2e0a76516444627b3ad2))
+
 ## v0.2.0 (2021-05-01)
 ### Feature
 * **Information:** Add periodic table command ([`c8295c3`](https://github.com/danth/starflake/commit/c8295c390ec3713057e81f44d5662b07e70247e5))
