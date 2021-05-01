@@ -25,6 +25,7 @@ class StarflakeBot(commands.Bot):
 
         logger.info("Loading cogs")
         chickennuggets.load(self, ["help", "errors"])
+        self.load_extension("starflake.cogs.information")
 
     def run(self):
         super().run(self.token)
