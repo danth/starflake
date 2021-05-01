@@ -1,4 +1,4 @@
-from starflake.element import Element
+from starflake.game_objects.element import Element
 
 TABLE_WIDTH = 18
 TABLE_HEIGHT = 7

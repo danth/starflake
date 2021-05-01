@@ -6,7 +6,7 @@ import chickennuggets
 import discordhealthcheck
 from discord.ext import commands
 
-from starflake.periodic_table import PeriodicTable
+from starflake.game_objects.periodic_table import PeriodicTable
 
 logger = logging.getLogger(__name__)
 
