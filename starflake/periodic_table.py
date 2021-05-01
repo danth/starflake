@@ -1,6 +1,5 @@
 from starflake.element import Element
 
-
 TABLE_WIDTH = 18
 TABLE_HEIGHT = 7
 
@@ -31,11 +30,7 @@ class PeriodicTable:
     def __repr__(self):
         # Display the element symbols in a grid
         return "\n".join(
-            " ".join(
-                element.symbol
-                for element in row
-            )
-            for row in self.table
+            " ".join(element.symbol for element in row) for row in self.table
         )
 
     @property

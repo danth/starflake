@@ -8,7 +8,6 @@ from discord.ext import commands
 
 from starflake.periodic_table import PeriodicTable
 
-
 logger = logging.getLogger(__name__)
 
 

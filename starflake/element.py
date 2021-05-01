@@ -1,6 +1,5 @@
 import random
 
-
 VOWELS = "aeiou"
 CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 
