@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2021-05-01)
+### Feature
+* **Information:** Add elements command ([`37d9fca`](https://github.com/danth/starflake/commit/37d9fcaf0dfc53902689e374cfbed4c782f24a28))
+
 ## v0.3.0 (2021-05-01)
 ### Feature
 * **PeriodicTable:** Reduce size of the periodic table ([`e4b2370`](https://github.com/danth/starflake/commit/e4b2370352f16085b122fe1f008d9bfb5751d364))
