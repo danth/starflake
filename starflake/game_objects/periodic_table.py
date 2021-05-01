@@ -28,10 +28,22 @@ class PeriodicTable:
         self.elements = elements
 
     def __repr__(self):
-        # Display the element symbols in a grid
-        return "\n".join(
-            " ".join(element.symbol for element in row) for row in self.table
-        )
+        """Display the element symbols in a grid."""
+
+        def format_index(index):
+            return str(index + 1).zfill(2)
+
+        # Begin with a header like "   01 02 03 04 05 …"
+        grid = "   " + " ".join(map(format_index, range(TABLE_WIDTH))) + "\n"
+
+        for index, row in enumerate(self.table):
+            # Add the row number like "01 "
+            grid += format_index(index) + " "
+            # Add the symbols like "Ab Cd Ef Gh Ij …"
+            grid += " ".join(element.symbol for element in row) + "\n"
+
+        # Remove the trailing newline
+        return grid.strip("\n")
 
     @property
     def table(self):
