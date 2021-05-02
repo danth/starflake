@@ -14,10 +14,7 @@ class Spectrum:
 
         def is_acceptable(new_colour):
             """Ensure a colour does not overlap another colour in the list."""
-            return not any(
-                colour.overlaps(new_colour)
-                for colour in colours
-            )
+            return not any(colour.overlaps(new_colour) for colour in colours)
 
         while len(colours) < colour_count:
             colour = Colour.random()
