@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.0 (2021-05-02)
+### Feature
+* **Information:** Add command to see an element's details ([`e190007`](https://github.com/danth/starflake/commit/e190007f160038f6d3b4af861edf2574be49a4c3))
+* **Spectrum:** Give each element a colour spectrum ([`e060449`](https://github.com/danth/starflake/commit/e06044913a3e335d9303d644b030720e9ee059aa))
+
 ## v0.4.0 (2021-05-01)
 ### Feature
 * **Information:** Add elements command ([`37d9fca`](https://github.com/danth/starflake/commit/37d9fcaf0dfc53902689e374cfbed4c782f24a28))
