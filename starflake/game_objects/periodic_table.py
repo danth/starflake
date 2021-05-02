@@ -39,9 +39,11 @@ class PeriodicTable:
             return str(number).zfill(2)
 
         # Begin with a header like "   01 02 03 04 05 …"
-        grid = "   " + " ".join(
-            format_number(group_number) for group_number, _ in self.groups
-        ) + "\n"
+        grid = (
+            "   "
+            + " ".join(format_number(group_number) for group_number, _ in self.groups)
+            + "\n"
+        )
 
         for period_number, period in self.periods:
             # Add the period number like "01 "
