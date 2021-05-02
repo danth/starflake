@@ -1,4 +1,5 @@
 from starflake.game_objects.element import Element
+from starflake.utils import group_by
 
 GROUPS = 8
 PERIODS = 5
@@ -15,11 +16,14 @@ class PeriodicTable:
         # This list is used to prevent the same symbol being added twice
         symbols = []
 
-        while len(elements) < (GROUPS * PERIODS):
-            period = (len(elements) // GROUPS) + 1
-            element = Element.random(period)
+        for period_number in range(1, PERIODS + 1):
+            for group_number in range(1, GROUPS + 1):
 
-            if element.symbol not in symbols:
+                element = Element.random(group_number, period_number)
+                while element.symbol in symbols:
+                    # Choose a new element because this symbol is already used
+                    element = Element.random(group_number, period_number)
+
                 elements.append(element)
                 symbols.append(element.symbol)
 
@@ -31,15 +35,17 @@ class PeriodicTable:
     def __repr__(self):
         """Display the element symbols in a grid."""
 
-        def format_index(index):
-            return str(index + 1).zfill(2)
+        def format_number(number):
+            return str(number).zfill(2)
 
         # Begin with a header like "   01 02 03 04 05 …"
-        grid = "   " + " ".join(map(format_index, range(GROUPS))) + "\n"
+        grid = "   " + " ".join(
+            format_number(group_number) for group_number, _ in self.groups
+        ) + "\n"
 
-        for index, period in enumerate(self.periods):
+        for period_number, period in self.periods:
             # Add the period number like "01 "
-            grid += format_index(index) + " "
+            grid += format_number(period_number) + " "
             # Add the symbols like "Ab Cd Ef Gh Ij …"
             grid += " ".join(element.symbol for element in period) + "\n"
 
@@ -48,19 +54,12 @@ class PeriodicTable:
 
     @property
     def periods(self):
-        """A 2d array containing each period as a nested list."""
+        """An iterator through (period number, [elements]) for all periods."""
 
-        periods = []
-
-        for i in range(0, len(self.elements), GROUPS):
-            periods.append(self.elements[i : i + GROUPS])
-
-        return periods
+        return group_by(self.elements, lambda element: element.period_number)
 
     @property
     def groups(self):
-        """A 2d array containing each group as a nested list."""
+        """An iterator through (group number, [elements]) for all groups."""
 
-        # This transposes self.periods by zipping together the nth item from
-        # each period, and converting the zipped tuples to lists
-        return map(list, zip(*self.periods))
+        return group_by(self.elements, lambda element: element.group_number)

@@ -10,7 +10,7 @@ class Element:
     """A chemical element."""
 
     @classmethod
-    def random(cls, period):
+    def random(cls, group_number, period_number):
         """
         Instantiate a randomly named element.
 
@@ -27,13 +27,15 @@ class Element:
         # The symbol is the first two consonants in the name
         symbol = name[0].upper() + name[2]
 
-        spectrum = Spectrum.random(period)
+        spectrum = Spectrum.random(period_number)
 
-        return cls(name, symbol, spectrum)
+        return cls(name, symbol, group_number, period_number, spectrum)
 
-    def __init__(self, name, symbol, spectrum):
+    def __init__(self, name, symbol, group_number, period_number, spectrum):
         self.name = name
         self.symbol = symbol
+        self.group_number = group_number
+        self.period_number = period_number
         self.spectrum = spectrum
 
     def __repr__(self):

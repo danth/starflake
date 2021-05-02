@@ -22,9 +22,9 @@ class Information(commands.Cog):
 
         embed = discord.Embed(title="Elements")
 
-        for i, group in enumerate(context.bot.periodic_table.groups):
+        for group_number, group in context.bot.periodic_table.groups:
             embed.add_field(
-                name=f"Group {i + 1}",
+                name=f"Group {group_number}",
                 value="\n".join(str(element).title() for element in group),
             )
 
