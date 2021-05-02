@@ -16,7 +16,8 @@ class PeriodicTable:
         symbols = []
 
         while len(elements) < (GROUPS * PERIODS):
-            element = Element.random()
+            period = (len(elements) // GROUPS) + 1
+            element = Element.random(period)
 
             if element.symbol not in symbols:
                 elements.append(element)
