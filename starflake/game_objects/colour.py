@@ -3,6 +3,10 @@ import random
 MINIMUM_COLOUR_WIDTH = 0.005
 MAXIMUM_COLOUR_WIDTH = 0.05
 
+# Used alongside the hue when displaying colours in Discord
+SATURATION = 0.7
+VALUE = 0.7
+
 
 class Colour:
     """A spot of colour which covers a small range of hues."""

@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 
+from starflake.converters.element import ElementConverter
+from starflake.game_objects.colour import SATURATION, VALUE
+
 
 class Information(commands.Cog):
     @commands.command()
@@ -25,6 +28,20 @@ class Information(commands.Cog):
                 value="\n".join(str(element).title() for element in group),
             )
 
+        await context.send(embed=embed)
+
+    @commands.command()
+    async def element(self, context, element: ElementConverter):
+        """Display detailed information about an element."""
+
+        embed = discord.Embed(
+            title=str(element).title(),
+            colour=discord.Colour.from_hsv(
+                element.spectrum.mean_hue,
+                SATURATION,
+                VALUE,
+            ),
+        )
         await context.send(embed=embed)
 
 

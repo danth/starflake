@@ -32,6 +32,12 @@ class Spectrum:
     def __repr__(self):
         return f"Spectrum({self.colours})"
 
+    @property
+    def mean_hue(self):
+        """The average hue of the colours in this spectrum."""
+
+        return sum(colour.hue for colour in self.colours) / len(self.colours)
+
     def bonds(self, other):
         """Return the number of bonds formed when combining with another spectrum."""
 
