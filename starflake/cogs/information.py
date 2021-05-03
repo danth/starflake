@@ -42,6 +42,8 @@ class Information(commands.Cog):
                 VALUE,
             ),
         )
+        embed.add_field(name="Group", value=element.group_number)
+        embed.add_field(name="Period", value=element.period_number)
         await context.send(embed=embed)
 
 
