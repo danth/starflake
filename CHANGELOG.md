@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.0 (2021-05-03)
+### Feature
+* **Information:** Show group and period numbers ([`92dc249`](https://github.com/danth/starflake/commit/92dc249ba8427c42bc82e5b9e9f4b90053ba0144))
+
 ## v0.5.0 (2021-05-02)
 ### Feature
 * **Information:** Add command to see an element's details ([`e190007`](https://github.com/danth/starflake/commit/e190007f160038f6d3b4af861edf2574be49a4c3))
