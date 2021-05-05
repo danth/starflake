@@ -1,8 +1,5 @@
 import itertools
 
-from starflake.utils import group_by
-from starflake.game_objects.constants import SUBSCRIPTS
-
 
 class BondingException(Exception):
     pass
@@ -15,7 +12,7 @@ class Molecule:
         self.elements = elements
 
     def __repr__(self):
-        return f"{self.formula}:{len(self.colours)}"
+        return self.formula
 
     @property
     def name(self):
@@ -27,24 +24,9 @@ class Molecule:
     def formula(self):
         """The chemical formula of this molecule."""
 
-        formula = ""
-
-        for symbol, count in self.counted_symbols:
-            formula += symbol
-            if count > 1:
-                formula += str(count).translate(SUBSCRIPTS)
-
-
-        return formula
-
-    @property
-    def counted_symbols(self):
-        """An iterator through (symbol, count) for all elements in the molecule."""
-
-        grouped_elements = group_by(self.elements, lambda element: element.symbol)
-
-        for symbol, elements in grouped_elements:
-            yield symbol, len(list(elements))
+        symbols = [element.symbol for element in self.elements]
+        symbols.sort()
+        return "".join(symbols)
 
     @property
     def colours(self):
