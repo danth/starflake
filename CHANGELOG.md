@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.0 (2021-05-05)
+### Feature
+* **Molecules:** Produce identical products when the order of reactants varies ([`0479446`](https://github.com/danth/starflake/commit/0479446f2ecb50687b01cb435c58f540d51ea555))
+* **Molecule:** Begin work on bonding system ([`73aed11`](https://github.com/danth/starflake/commit/73aed11fd81e98749edf08d595f4f7bb2e1b52c9))
+
 ## v0.6.0 (2021-05-03)
 ### Feature
 * **Information:** Show group and period numbers ([`92dc249`](https://github.com/danth/starflake/commit/92dc249ba8427c42bc82e5b9e9f4b90053ba0144))
