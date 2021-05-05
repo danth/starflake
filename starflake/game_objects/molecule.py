@@ -1,8 +1,11 @@
 import itertools
 
 from starflake.utils import group_by
+from starflake.game_objects.constants import SUBSCRIPTS
 
-SUBSCRIPTS = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+
+class BondingException(Exception):
+    pass
 
 
 class Molecule:
@@ -49,13 +52,24 @@ class Molecule:
 
         return set.union(*(element.colours for element in self.elements))
 
-    def merge(self, other):
-        """Merge these two molecules, or return None if not permitted."""
+    @property
+    def mass(self):
+        """The total mass of this molecule."""
+
+        return sum(element.mass for element in self.elements)
+
+    def can_bond(self, other):
+        """Return whether these two molecules may be merged."""
 
         # Ensure each colour will only be present once in the new molecule
-        # (If the intersection is non-empty, this will be True)
-        if self.colours & other.colours:
-            return None
+        # by checking the intersection is empty
+        return len(self.colours & other.colours) == 0
+
+    def __add__(self, other):
+        """Merge these two molecules."""
+
+        if not self.can_bond(other):
+            raise BondingException(f"{self} cannot be bonded to {other}")
 
         return Molecule(self.elements + other.elements)
 
@@ -66,16 +80,25 @@ def react(elements):
     molecules = [Molecule([element]) for element in elements]
 
     while True:
-        # Find the first pair which are able to merge
-        for molecule_a, molecule_b in itertools.combinations(molecules, 2):
-            merged = molecule_a.merge(molecule_b)
-            if merged:
-                molecules.remove(molecule_a)
-                molecules.remove(molecule_b)
-                molecules.append(merged)
-                break
-        else:
-            # If we didn't break, no merge was made so another pass is unnecessary
+        # Get all pairs of molecules
+        pairs = itertools.combinations(molecules, 2)
+
+        # Remove any pairs which aren't allowed to bond
+        pairs = filter(lambda pair: Molecule.can_bond(*pair), pairs)
+
+        # Find the pair with the highest total mass
+        # (heavier molecules are more strongly attracted)
+        pair = max(pairs, default=None, key=lambda pair: pair[0].mass + pair[1].mass)
+
+        if pair is None:
+            # No more bonds can be formed
             break
+
+        # Remove the unbonded molecules
+        molecules.remove(pair[0])
+        molecules.remove(pair[1])
+
+        # Insert the bonded molecule
+        molecules.append(pair[0] + pair[1])
 
     return molecules

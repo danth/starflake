@@ -1,8 +1,6 @@
 from starflake.game_objects.element import Element
+from starflake.game_objects.constants import TABLE_PERIODS, TABLE_GROUPS
 from starflake.utils import group_by
-
-GROUPS = 8
-PERIODS = 5
 
 
 class PeriodicTable:
@@ -16,8 +14,8 @@ class PeriodicTable:
         # This list is used to prevent the same symbol being added twice
         symbols = []
 
-        for period_number in range(1, PERIODS + 1):
-            for group_number in range(1, GROUPS + 1):
+        for period_number in range(1, TABLE_PERIODS + 1):
+            for group_number in range(1, TABLE_GROUPS + 1):
 
                 element = Element.random(group_number, period_number)
                 while element.symbol in symbols:

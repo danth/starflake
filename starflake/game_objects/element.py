@@ -1,10 +1,6 @@
 import random
 
-VOWELS = "aeiou"
-CONSONANTS = "bcdfghjklmnpqrstvwxyz"
-
-# These colours are the :colour_circle: emojis
-COLOURS = ["black", "blue", "brown", "green", "orange", "purple", "red", "white", "yellow"]
+from starflake.game_objects.constants import TABLE_GROUPS, VOWELS, CONSONANTS, COLOURS
 
 
 class Element:
@@ -41,3 +37,9 @@ class Element:
 
     def __repr__(self):
         return f"{self.name} ({self.symbol})"
+
+    @property
+    def mass(self):
+        """The relative mass of this element."""
+
+        return ((self.period_number - 1) * TABLE_GROUPS) + self.group_number
