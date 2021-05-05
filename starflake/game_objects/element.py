@@ -1,9 +1,10 @@
 import random
 
-from starflake.game_objects.spectrum import Spectrum
-
 VOWELS = "aeiou"
 CONSONANTS = "bcdfghjklmnpqrstvwxyz"
+
+# These colours are the :colour_circle: emojis
+COLOURS = ["black", "blue", "brown", "green", "orange", "purple", "red", "white", "yellow"]
 
 
 class Element:
@@ -27,16 +28,16 @@ class Element:
         # The symbol is the first two consonants in the name
         symbol = name[0].upper() + name[2]
 
-        spectrum = Spectrum.random(period_number)
+        colours = set(random.sample(COLOURS, period_number))
 
-        return cls(name, symbol, group_number, period_number, spectrum)
+        return cls(name, symbol, colours, group_number, period_number)
 
-    def __init__(self, name, symbol, group_number, period_number, spectrum):
+    def __init__(self, name, symbol, colours, group_number, period_number):
         self.name = name
         self.symbol = symbol
+        self.colours = colours
         self.group_number = group_number
         self.period_number = period_number
-        self.spectrum = spectrum
 
     def __repr__(self):
         return f"{self.name} ({self.symbol})"
