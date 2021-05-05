@@ -18,7 +18,21 @@ class Molecule:
     def name(self):
         """The full name of this molecule."""
 
-        # TODO
+        names = [element.name for element in self.elements]
+        names.sort()
+
+        def add_suffix(suffix):
+            return " ".join(names[:-1]) + " " + names[-1][:-1] + suffix
+
+        if len(names) == 1:
+            return names[0]
+        if len(names) == 2:
+            return add_suffix("ide")
+        if len(names) == 3:
+            return add_suffix("ate")
+        if len(names) == 4:
+            return add_suffix("ite")
+        return add_suffix("oplex")
 
     @property
     def formula(self):
