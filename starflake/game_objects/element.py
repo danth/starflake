@@ -1,6 +1,6 @@
 import random
 
-from starflake.game_objects.constants import TABLE_GROUPS, VOWELS, CONSONANTS, COLOURS
+from starflake.game_objects.constants import COLOURS, CONSONANTS, TABLE_GROUPS, VOWELS
 
 
 class Element:

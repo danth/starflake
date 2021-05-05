@@ -5,4 +5,14 @@ CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 VOWELS = "aeiou"
 
 # These colours are the :colour_circle: emojis
-COLOURS = ["black", "blue", "brown", "green", "orange", "purple", "red", "white", "yellow"]
+COLOURS = [
+    "black",
+    "blue",
+    "brown",
+    "green",
+    "orange",
+    "purple",
+    "red",
+    "white",
+    "yellow",
+]

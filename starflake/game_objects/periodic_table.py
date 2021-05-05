@@ -1,5 +1,5 @@
+from starflake.game_objects.constants import TABLE_GROUPS, TABLE_PERIODS
 from starflake.game_objects.element import Element
-from starflake.game_objects.constants import TABLE_PERIODS, TABLE_GROUPS
 from starflake.utils import group_by
 
 
