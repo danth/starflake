@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.8.0 (2021-05-05)
+### Feature
+* **Molecule:** Generate molecule names ([`5d2c440`](https://github.com/danth/starflake/commit/5d2c44057bca5702606d862c784d0271a06fabad))
+
 ## v0.7.0 (2021-05-05)
 ### Feature
 * **Molecules:** Produce identical products when the order of reactants varies ([`0479446`](https://github.com/danth/starflake/commit/0479446f2ecb50687b01cb435c58f540d51ea555))
