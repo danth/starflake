@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from starflake.converters.element import ElementConverter
+from starflake.converters.molecule import MoleculeConverter
 
 
 class Information(commands.Cog):
@@ -36,6 +37,17 @@ class Information(commands.Cog):
         embed = discord.Embed(title=str(element).title())
         embed.add_field(name="Group", value=element.group_number)
         embed.add_field(name="Period", value=element.period_number)
+        await context.send(embed=embed)
+
+    @commands.command(aliases=["molecule"])
+    async def compound(self, context, compound: MoleculeConverter):
+        """Display detailed information about a compound."""
+
+        embed = discord.Embed(title=compound.name.title())
+        embed.add_field(name="Formula", value=compound.formula)
+        embed.add_field(name="Elements", value="\n".join(
+            str(element).title() for element in compound.elements
+        ))
         await context.send(embed=embed)
 
 
