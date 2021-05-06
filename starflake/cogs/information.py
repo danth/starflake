@@ -45,9 +45,10 @@ class Information(commands.Cog):
 
         embed = discord.Embed(title=compound.name.title())
         embed.add_field(name="Formula", value=compound.formula)
-        embed.add_field(name="Elements", value="\n".join(
-            str(element).title() for element in compound.elements
-        ))
+        embed.add_field(
+            name="Elements",
+            value="\n".join(str(element).title() for element in compound.elements),
+        )
         await context.send(embed=embed)
 
 
