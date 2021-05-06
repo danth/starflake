@@ -1,10 +1,19 @@
 import random
+from dataclasses import dataclass
+from typing import List
 
 from starflake.game_objects.constants import COLOURS, CONSONANTS, TABLE_GROUPS, VOWELS
 
 
+@dataclass(repr=False, frozen=True)
 class Element:
     """A chemical element."""
+
+    name: str
+    symbol: str
+    colours: List[str]
+    group_number: int
+    period_number: int
 
     @classmethod
     def random(cls, group_number, period_number):
@@ -28,15 +37,8 @@ class Element:
 
         return cls(name, symbol, colours, group_number, period_number)
 
-    def __init__(self, name, symbol, colours, group_number, period_number):
-        self.name = name
-        self.symbol = symbol
-        self.colours = colours
-        self.group_number = group_number
-        self.period_number = period_number
-
     def __repr__(self):
-        return f"{self.name} ({self.symbol})"
+        return self.symbol
 
     @property
     def mass(self):

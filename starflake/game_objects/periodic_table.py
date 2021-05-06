@@ -1,10 +1,16 @@
+from dataclasses import dataclass
+from typing import List
+
 from starflake.game_objects.constants import TABLE_GROUPS, TABLE_PERIODS
 from starflake.game_objects.element import Element
 from starflake.utils import group_by
 
 
+@dataclass(repr=False, frozen=True)
 class PeriodicTable:
     """A periodic table of elements."""
+
+    elements: List[Element]
 
     @classmethod
     def random(cls):
@@ -26,9 +32,6 @@ class PeriodicTable:
                 symbols.append(element.symbol)
 
         return cls(elements)
-
-    def __init__(self, elements):
-        self.elements = elements
 
     def __repr__(self):
         """Display the element symbols in a grid."""

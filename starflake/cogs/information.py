@@ -40,7 +40,7 @@ class Information(commands.Cog):
         for group_number, group in context.bot.periodic_table.groups:
             embed.add_field(
                 name=f"Group {group_number}",
-                value="\n".join(str(element).title() for element in group),
+                value="\n".join(f"{element.name.title()} ({element.symbol})" for element in group),
             )
 
         await context.send(embed=embed)
@@ -49,7 +49,8 @@ class Information(commands.Cog):
     async def element(self, context, element: ElementConverter):
         """Display detailed information about an element."""
 
-        embed = discord.Embed(title=str(element).title())
+        embed = discord.Embed(title=element.name.title())
+        embed.add_field(name="Symbol", value=element.symbol)
         embed.add_field(name="Group", value=element.group_number)
         embed.add_field(name="Period", value=element.period_number)
         embed.add_field(name="Spectrum", value=emoji_spectrum(element.colours))
@@ -63,7 +64,7 @@ class Information(commands.Cog):
         embed.add_field(name="Formula", value=compound.formula)
         embed.add_field(
             name="Elements",
-            value="\n".join(str(element).title() for element in compound.elements),
+            value="\n".join(f"{element.name.title()} ({element.symbol})" for element in compound.elements),
         )
         embed.add_field(name="Spectrum", value=emoji_spectrum(compound.colours))
         await context.send(embed=embed)
