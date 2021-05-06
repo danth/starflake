@@ -20,6 +20,12 @@ def emoji_spectrum(colours):
     return spectrum
 
 
+def element_list(elements):
+    """Format a list of elements as text."""
+
+    return "\n".join(f"{element.symbol}: {element.name}" for element in elements)
+
+
 class Information(commands.Cog):
     @commands.command()
     async def periodic_table(self, context):
@@ -36,15 +42,8 @@ class Information(commands.Cog):
         """Display a list of all elements."""
 
         embed = discord.Embed(title="Elements")
-
         for group_number, group in context.bot.periodic_table.groups:
-            embed.add_field(
-                name=f"Group {group_number}",
-                value="\n".join(
-                    f"{element.name.title()} ({element.symbol})" for element in group
-                ),
-            )
-
+            embed.add_field(name=f"Group {group_number}", value=element_list(group))
         await context.send(embed=embed)
 
     @commands.command()
@@ -64,13 +63,7 @@ class Information(commands.Cog):
 
         embed = discord.Embed(title=compound.name.title())
         embed.add_field(name="Formula", value=compound.formula)
-        embed.add_field(
-            name="Elements",
-            value="\n".join(
-                f"{element.name.title()} ({element.symbol})"
-                for element in compound.elements
-            ),
-        )
+        embed.add_field(name="Elements", value=element_list(compound.elements))
         embed.add_field(name="Spectrum", value=emoji_spectrum(compound.colours))
         await context.send(embed=embed)
 
