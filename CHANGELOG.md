@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.9.0 (2021-05-06)
+### Feature
+* **Information:** Add an information command for compounds ([`2114983`](https://github.com/danth/starflake/commit/211498366a27da802e4e7796b9ba77ce925c285b))
+
 ## v0.8.0 (2021-05-05)
 ### Feature
 * **Molecule:** Generate molecule names ([`5d2c440`](https://github.com/danth/starflake/commit/5d2c44057bca5702606d862c784d0271a06fabad))
