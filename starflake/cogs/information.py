@@ -3,6 +3,21 @@ from discord.ext import commands
 
 from starflake.converters.element import ElementConverter
 from starflake.converters.molecule import MoleculeConverter
+from starflake.game_objects.constants import COLOURS
+
+
+def emoji_spectrum(colours):
+    """Represent a spectrum using Discord emojis."""
+
+    spectrum = ""
+
+    for colour in COLOURS:
+        if colour in colours:
+            spectrum += f":{colour}_circle:"
+        else:
+            spectrum += "-"
+
+    return spectrum
 
 
 class Information(commands.Cog):
@@ -37,6 +52,7 @@ class Information(commands.Cog):
         embed = discord.Embed(title=str(element).title())
         embed.add_field(name="Group", value=element.group_number)
         embed.add_field(name="Period", value=element.period_number)
+        embed.add_field(name="Spectrum", value=emoji_spectrum(element.colours))
         await context.send(embed=embed)
 
     @commands.command(aliases=["molecule"])
@@ -49,6 +65,7 @@ class Information(commands.Cog):
             name="Elements",
             value="\n".join(str(element).title() for element in compound.elements),
         )
+        embed.add_field(name="Spectrum", value=emoji_spectrum(compound.colours))
         await context.send(embed=embed)
 
 
