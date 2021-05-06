@@ -40,7 +40,9 @@ class Information(commands.Cog):
         for group_number, group in context.bot.periodic_table.groups:
             embed.add_field(
                 name=f"Group {group_number}",
-                value="\n".join(f"{element.name.title()} ({element.symbol})" for element in group),
+                value="\n".join(
+                    f"{element.name.title()} ({element.symbol})" for element in group
+                ),
             )
 
         await context.send(embed=embed)
@@ -64,7 +66,10 @@ class Information(commands.Cog):
         embed.add_field(name="Formula", value=compound.formula)
         embed.add_field(
             name="Elements",
-            value="\n".join(f"{element.name.title()} ({element.symbol})" for element in compound.elements),
+            value="\n".join(
+                f"{element.name.title()} ({element.symbol})"
+                for element in compound.elements
+            ),
         )
         embed.add_field(name="Spectrum", value=emoji_spectrum(compound.colours))
         await context.send(embed=embed)
