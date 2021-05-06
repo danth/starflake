@@ -11,6 +11,9 @@ class Molecule:
     def __init__(self, elements):
         self.elements = elements
 
+        # Keep elements in alphabetical order by symbol
+        self.elements.sort(key=lambda element: element.symbol)
+
     def __repr__(self):
         return self.formula
 
@@ -19,7 +22,6 @@ class Molecule:
         """The full name of this molecule."""
 
         names = [element.name for element in self.elements]
-        names.sort()
 
         def add_suffix(suffix):
             return " ".join(names[:-1]) + " " + names[-1][:-1] + suffix
@@ -39,7 +41,6 @@ class Molecule:
         """The chemical formula of this molecule."""
 
         symbols = [element.symbol for element in self.elements]
-        symbols.sort()
         return "".join(symbols)
 
     @property
