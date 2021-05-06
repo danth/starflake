@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.10.0 (2021-05-06)
+### Feature
+* **Information:** Display spectra in information embeds ([`17589c2`](https://github.com/danth/starflake/commit/17589c28a084514a2ff093e3e47c3aeca43bb096))
+
 ## v0.9.0 (2021-05-06)
 ### Feature
 * **Information:** Add an information command for compounds ([`2114983`](https://github.com/danth/starflake/commit/211498366a27da802e4e7796b9ba77ce925c285b))
