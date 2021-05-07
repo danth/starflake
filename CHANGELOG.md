@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.11.0 (2021-05-07)
+### Feature
+* **Information:** Reserve :black_circle: for missing colours ([`1d9bbee`](https://github.com/danth/starflake/commit/1d9bbeef61ba357330f6726870c8e09ee18b78cc))
+
 ## v0.10.0 (2021-05-06)
 ### Feature
 * **Information:** Display spectra in information embeds ([`17589c2`](https://github.com/danth/starflake/commit/17589c28a084514a2ff093e3e47c3aeca43bb096))
