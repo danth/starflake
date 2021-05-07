@@ -6,7 +6,7 @@ VOWELS = "aeiou"
 
 # These colours are the :colour_circle: emojis
 COLOURS = [
-    "black",
+    # black is used when a colour is not present
     "blue",
     "brown",
     "green",

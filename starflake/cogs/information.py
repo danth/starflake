@@ -15,7 +15,7 @@ def emoji_spectrum(colours):
         if colour in colours:
             spectrum += f":{colour}_circle:"
         else:
-            spectrum += "-"
+            spectrum += ":black_circle:"
 
     return spectrum
 
