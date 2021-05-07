@@ -1,5 +1,6 @@
-import jsons
 from dataclasses import dataclass
+
+import jsons
 
 from starflake.game_objects.periodic_table import PeriodicTable
 
