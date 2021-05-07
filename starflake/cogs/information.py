@@ -4,6 +4,7 @@ from discord.ext import commands
 from starflake.converters.element import ElementConverter
 from starflake.converters.molecule import MoleculeConverter
 from starflake.game_objects.constants import COLOURS
+from starflake.game_objects.game import with_game
 
 
 def emoji_spectrum(colours):
@@ -26,14 +27,17 @@ def element_list(elements):
     return "\n".join(f"{element.symbol}: {element.name}" for element in elements)
 
 
-class Information(commands.Cog):
+class InformationCog(commands.Cog, name="Information"):
+    def cog_check(self, context):
+        return with_game(context)
+
     @commands.command()
     async def periodic_table(self, context):
         """Display the game's periodic table."""
 
         embed = discord.Embed(
             title="Periodic Table",
-            description=f"```\n{context.bot.periodic_table}\n```",
+            description=f"```\n{context.game.periodic_table}\n```",
         )
         await context.send(embed=embed)
 
@@ -42,7 +46,7 @@ class Information(commands.Cog):
         """Display a list of all elements."""
 
         embed = discord.Embed(title="Elements")
-        for group_number, group in context.bot.periodic_table.groups:
+        for group_number, group in context.game.periodic_table.groups:
             embed.add_field(name=f"Group {group_number}", value=element_list(group))
         await context.send(embed=embed)
 
@@ -69,4 +73,4 @@ class Information(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Information())
+    bot.add_cog(InformationCog())

@@ -1,6 +1,6 @@
 import random
 from dataclasses import dataclass
-from typing import List
+from typing import Set
 
 from starflake.game_objects.constants import COLOURS, CONSONANTS, TABLE_GROUPS, VOWELS
 
@@ -11,7 +11,7 @@ class Element:
 
     name: str
     symbol: str
-    colours: List[str]
+    colours: Set[str]
     group_number: int
     period_number: int
 
