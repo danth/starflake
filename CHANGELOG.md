@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.12.0 (2021-05-07)
+### Feature
+* **Game:** Allow separate game instances ([`59bbd11`](https://github.com/danth/starflake/commit/59bbd1177bd3a498e75058df785ec5f5bd695376))
+* **Information:** Set spectrum field as non-inline ([`c1b5c16`](https://github.com/danth/starflake/commit/c1b5c167b0584af738aecdb39108a560bc4668f0))
+
 ## v0.11.0 (2021-05-07)
 ### Feature
 * **Information:** Reserve :black_circle: for missing colours ([`1d9bbee`](https://github.com/danth/starflake/commit/1d9bbeef61ba357330f6726870c8e09ee18b78cc))

@@ -2,7 +2,7 @@ from os import path
 
 from setuptools import find_packages, setup
 
-__version__ = "0.11.0"
+__version__ = "0.12.0"
 
 # Read long description from README.md
 here = path.abspath(path.dirname(__file__))
