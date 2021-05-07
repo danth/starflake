@@ -54,7 +54,7 @@ class Information(commands.Cog):
         embed.add_field(name="Symbol", value=element.symbol)
         embed.add_field(name="Group", value=element.group_number)
         embed.add_field(name="Period", value=element.period_number)
-        embed.add_field(name="Spectrum", value=emoji_spectrum(element.colours))
+        embed.add_field(name="Spectrum", value=emoji_spectrum(element.colours), inline=False)
         await context.send(embed=embed)
 
     @commands.command(aliases=["molecule"])
@@ -64,7 +64,7 @@ class Information(commands.Cog):
         embed = discord.Embed(title=compound.name.title())
         embed.add_field(name="Formula", value=compound.formula)
         embed.add_field(name="Elements", value=element_list(compound.elements))
-        embed.add_field(name="Spectrum", value=emoji_spectrum(compound.colours))
+        embed.add_field(name="Spectrum", value=emoji_spectrum(compound.colours), inline=False)
         await context.send(embed=embed)
 
 
