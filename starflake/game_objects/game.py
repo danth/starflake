@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from functools import wraps
 
 import jsons
 
@@ -20,20 +21,70 @@ class Game:
 
         return cls(id_, periodic_table)
 
-    @classmethod
-    def load(cls, bot, id_):
+
+def _cached(function):
+    """Cache the return value of a method in self.opened_games."""
+
+    @wraps(function)
+    def wrapped_function(self, id_):
+        try:
+            return self.opened_games[id_]
+        except KeyError:
+            game = function(self, id_)
+            self.opened_games[id_] = game
+            return game
+
+    return wrapped_function
+
+
+class GameStore:
+    """A persistent store for Game instances."""
+
+    def __init__(self, bot):
+        self.bot = bot
+
+        # TODO: Unload games when they are not in use
+        self.opened_games = {}
+
+    def _get_path(self, id_):
+        """Return the path to the JSON file for an ID."""
+
+        return self.bot.get_data_path(f"{id_}.json")
+
+    @_cached
+    def create(self, id_):
+        """Create a new game."""
+
+        return Game.new(id_)
+
+    @_cached
+    def load(self, id_):
         """Load a game from disk."""
 
-        path = bot.get_data_path(f"{id_}.json")
-        with open(path, "r") as file:
-            return jsons.loads(file.read(), cls)
+        path = self._get_path(id_)
 
-    def save(self, bot):
-        """Persist game data to disk."""
+        try:
+            with open(path) as file:
+                json = file.read()
+        except FileNotFoundError as error:
+            raise KeyError(f"Game {id_} does not exist") from error
 
-        path = bot.get_data_path(f"{self.id_}.json")
+        return jsons.loads(json, Game)
+
+    def save(self, game):
+        """Write a game to disk."""
+
+        json = jsons.dumps(game, strip_properties=True)
+        path = self._get_path(game.id_)
+
         with open(path, "w") as file:
-            file.write(jsons.dumps(self, strip_properties=True))
+            file.write(json)
+
+    def save_all(self):
+        """Persist all opened games."""
+
+        for game in self.opened_games.values():
+            self.save(game)
 
 
 def with_game(context):
@@ -46,9 +97,10 @@ def with_game(context):
     if context.channel.category is None:
         return False
 
+    game_store = context.bot.get_cog("Game").game_store
     try:
-        context.game = Game.load(context.bot, context.channel.category.id)
-    except FileNotFoundError:
+        context.game = game_store.load(context.channel.category.id)
+    except KeyError:
         return False
 
     return True
