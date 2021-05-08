@@ -23,7 +23,9 @@ class InformationCog(commands.Cog, name="Information"):
         embed = discord.Embed(title="Elements")
 
         for group_number, group in context.game.periodic_table.groups:
-            element_list = "\n".join(f"{element.symbol}: {element.name}" for element in group)
+            element_list = "\n".join(
+                f"{element.symbol}: {element.name}" for element in group
+            )
             embed.add_field(name=f"Group {group_number}", value=element_list)
 
         await context.send(embed=embed)
@@ -39,7 +41,6 @@ class InformationCog(commands.Cog, name="Information"):
         """Display detailed information about a compound."""
 
         await compound.send_embed(context)
-
 
 
 def setup(bot):

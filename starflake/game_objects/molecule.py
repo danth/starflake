@@ -2,7 +2,7 @@ import itertools
 
 import discord
 
-from starflake.game_objects import EmbeddableGameObject, BondableGameObject
+from starflake.game_objects import BondableGameObject, EmbeddableGameObject
 from starflake.game_objects.spectrum import Spectrum
 
 
@@ -65,7 +65,9 @@ class Molecule(EmbeddableGameObject, BondableGameObject):
     async def send_embed(self, messageable):
         embed = discord.Embed(title=self.name.title())
         embed.add_field(name="Formula", value=self.formula)
-        element_list = "\n".join(f"{element.symbol}: {element.name}" for element in self.elements)
+        element_list = "\n".join(
+            f"{element.symbol}: {element.name}" for element in self.elements
+        )
         embed.add_field(name="Elements", value=element_list)
         embed.add_field(name="Spectrum", value=self.spectrum.emoji, inline=False)
         await messageable.send(embed=embed)

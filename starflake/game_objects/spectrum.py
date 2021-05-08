@@ -2,7 +2,7 @@ import random
 from dataclasses import dataclass
 from typing import Set
 
-from starflake.game_objects import RandomisableGameObject, BondableGameObject
+from starflake.game_objects import BondableGameObject, RandomisableGameObject
 from starflake.game_objects.constants import COLOURS
 
 

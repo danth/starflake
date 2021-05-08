@@ -3,9 +3,9 @@ from dataclasses import dataclass
 
 import discord
 
-from starflake.game_objects import RandomisableGameObject, EmbeddableGameObject
-from starflake.game_objects.spectrum import Spectrum
+from starflake.game_objects import EmbeddableGameObject, RandomisableGameObject
 from starflake.game_objects.constants import CONSONANTS, TABLE_GROUPS, VOWELS
+from starflake.game_objects.spectrum import Spectrum
 
 
 @dataclass(repr=False, frozen=True)
