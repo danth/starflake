@@ -55,7 +55,9 @@ class GameCog(commands.Cog, name="Game"):
         """Delete the current game and all related channels."""
 
         # Shown in the audit log
-        reason = f"{context.author.name} asked for game {context.game.id_} to be deleted."
+        reason = (
+            f"{context.author.name} asked for game {context.game.id_} to be deleted."
+        )
 
         for channel in context.channel.category.text_channels:
             await channel.delete(reason=reason)
