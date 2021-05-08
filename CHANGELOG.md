@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.15.0 (2021-05-08)
+### Feature
+* **Information:** Add +products to view the products of a reaction ([`95bfb77`](https://github.com/danth/starflake/commit/95bfb77dde5caaa803d413b5c79c69f54c896b2f))
+
 ## v0.14.0 (2021-05-08)
 ### Feature
 * **Game:** Send documentation to #lore ([`660e726`](https://github.com/danth/starflake/commit/660e726287022c44fba740858e4d1fe6928d670b))
