@@ -73,9 +73,15 @@ class Molecule(EmbeddableGameObject, BondableGameObject):
         await messageable.send(embed=embed)
 
 
-def react(elements):
-    """Take a list of elements and return a list of synthesized molecules."""
+def react(reactants):
+    """Take a list of molecules and perform a reaction between them."""
 
+    # Break down the original molecules
+    elements = []
+    for reactant in reactants:
+        elements += reactant.elements
+
+    # Create new molecules with 1 element each
     molecules = [Molecule([element]) for element in elements]
 
     while True:

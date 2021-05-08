@@ -3,7 +3,9 @@ from discord.ext import commands
 
 from starflake.converters.element import ElementConverter
 from starflake.converters.molecule import MoleculeConverter
+from starflake.converters.reactants import ReactantsConverter
 from starflake.game_objects.game import with_game
+from starflake.game_objects.molecule import react
 
 
 class InformationCog(commands.Cog, name="Information"):
@@ -31,16 +33,25 @@ class InformationCog(commands.Cog, name="Information"):
         await context.send(embed=embed)
 
     @commands.command()
-    async def element(self, context, element: ElementConverter):
+    async def element(self, context, *, element: ElementConverter):
         """Display detailed information about an element."""
 
         await element.send_embed(context)
 
     @commands.command(aliases=["molecule"])
-    async def compound(self, context, compound: MoleculeConverter):
+    async def compound(self, context, *, compound: MoleculeConverter):
         """Display detailed information about a compound."""
 
         await compound.send_embed(context)
+
+    @commands.command()
+    async def products(self, context, *, reactants: ReactantsConverter):
+        """Determine the products of a reaction."""
+
+        products = react(reactants)
+
+        for product in products:
+            await product.send_embed(context)
 
 
 def setup(bot):
