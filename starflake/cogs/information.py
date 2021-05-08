@@ -34,19 +34,32 @@ class InformationCog(commands.Cog, name="Information"):
 
     @commands.command()
     async def element(self, context, *, element: ElementConverter):
-        """Display detailed information about an element."""
+        """
+        Display detailed information about an element.
+
+        Specify the element's symbol, not its name.
+        """
 
         await element.send_embed(context)
 
     @commands.command(aliases=["molecule"])
     async def compound(self, context, *, compound: MoleculeConverter):
-        """Display detailed information about a compound."""
+        """
+        Display detailed information about a compound.
+
+        Specify the compound's formula, not its name.
+        """
 
         await compound.send_embed(context)
 
     @commands.command()
     async def products(self, context, *, reactants: ReactantsConverter):
-        """Determine the products of a reaction."""
+        """
+        Determine the products of a reaction.
+
+        Specify the reactants as their symbol or formula, not their name,
+        and separate each reactant with a `+`.
+        """
 
         products = react(reactants)
 
