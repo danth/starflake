@@ -2,8 +2,8 @@ import itertools
 
 from starflake.channels import DocumentChannel
 from starflake.game_objects import BondingException
+from starflake.game_objects.constants import COLOURS, TABLE_GROUPS, TABLE_PERIODS
 from starflake.game_objects.molecule import Molecule
-from starflake.game_objects.constants import TABLE_GROUPS, TABLE_PERIODS, COLOURS
 
 
 def make_example_compound(periodic_table, size):

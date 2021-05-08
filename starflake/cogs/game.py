@@ -4,8 +4,8 @@ import discord
 import jsons
 from discord.ext import commands, tasks
 
-from starflake.channels.lore import LoreChannel
 from starflake.channels.commands import CommandsChannel
+from starflake.channels.lore import LoreChannel
 from starflake.game_objects.game import GameStore, with_game
 
 
