@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import os
 from functools import wraps
 
 import jsons
@@ -85,6 +86,17 @@ class GameStore:
 
         for game in self.opened_games.values():
             self.save(game)
+
+    def delete(self, game):
+        """Delete a game."""
+
+        path = self._get_path(game.id_)
+        try:
+            os.remove(path)
+        except FileNotFoundError:
+            pass
+
+        del self.opened_games[game.id_]
 
 
 def with_game(context):

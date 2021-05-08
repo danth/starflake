@@ -2,7 +2,7 @@ import discord
 import jsons
 from discord.ext import commands, tasks
 
-from starflake.game_objects.game import GameStore
+from starflake.game_objects.game import GameStore, with_game
 
 
 class GameCog(commands.Cog, name="Game"):
@@ -47,6 +47,21 @@ class GameCog(commands.Cog, name="Game"):
             description=f"Go to {channel.mention} to start playing!",
         )
         await context.send(embed=embed)
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    @commands.check(with_game)
+    async def delete_game(self, context):
+        """Delete the current game and all related channels."""
+
+        # Shown in the audit log
+        reason = f"{context.author.name} asked for game {context.game.id_} to be deleted."
+
+        for channel in context.channel.category.text_channels:
+            await channel.delete(reason=reason)
+        await context.channel.category.delete(reason=reason)
+
+        self.game_store.delete(context.game)
 
 
 def setup(bot):
