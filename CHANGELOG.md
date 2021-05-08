@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.13.0 (2021-05-08)
+### Feature
+* **Game:** Add +delete_game command ([`78f8c14`](https://github.com/danth/starflake/commit/78f8c14c88ee6f0a245fc580bc2dff077adfe480))
+
 ## v0.12.0 (2021-05-07)
 ### Feature
 * **Game:** Allow separate game instances ([`59bbd11`](https://github.com/danth/starflake/commit/59bbd1177bd3a498e75058df785ec5f5bd695376))
