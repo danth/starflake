@@ -1,17 +1,20 @@
 import random
 from dataclasses import dataclass
-from typing import Set
 
-from starflake.game_objects.constants import COLOURS, CONSONANTS, TABLE_GROUPS, VOWELS
+import discord
+
+from starflake.game_objects import RandomisableGameObject, EmbeddableGameObject
+from starflake.game_objects.spectrum import Spectrum
+from starflake.game_objects.constants import CONSONANTS, TABLE_GROUPS, VOWELS
 
 
 @dataclass(repr=False, frozen=True)
-class Element:
+class Element(RandomisableGameObject, EmbeddableGameObject):
     """A chemical element."""
 
     name: str
     symbol: str
-    colours: Set[str]
+    spectrum: Spectrum
     group_number: int
     period_number: int
 
@@ -33,9 +36,9 @@ class Element:
         # The symbol is the first two consonants in the name
         symbol = name[0].upper() + name[2]
 
-        colours = set(random.sample(COLOURS, period_number))
+        spectrum = Spectrum.random(period_number)
 
-        return cls(name, symbol, colours, group_number, period_number)
+        return cls(name, symbol, spectrum, group_number, period_number)
 
     def __repr__(self):
         return self.symbol
@@ -45,3 +48,11 @@ class Element:
         """The relative mass of this element."""
 
         return ((self.period_number - 1) * TABLE_GROUPS) + self.group_number
+
+    async def send_embed(self, messageable):
+        embed = discord.Embed(title=self.name.title())
+        embed.add_field(name="Symbol", value=self.symbol)
+        embed.add_field(name="Group", value=self.group_number)
+        embed.add_field(name="Period", value=self.period_number)
+        embed.add_field(name="Spectrum", value=self.spectrum.emoji, inline=False)
+        await messageable.send(embed=embed)

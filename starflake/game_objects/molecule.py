@@ -1,11 +1,12 @@
 import itertools
 
+import discord
 
-class BondingException(Exception):
-    pass
+from starflake.game_objects import EmbeddableGameObject, BondableGameObject
+from starflake.game_objects.spectrum import Spectrum
 
 
-class Molecule:
+class Molecule(EmbeddableGameObject, BondableGameObject):
     """Multiple elements bonded together."""
 
     def __init__(self, elements):
@@ -44,31 +45,30 @@ class Molecule:
         return "".join(symbols)
 
     @property
-    def colours(self):
-        """The set of all colours present in this molecule."""
-
-        return set.union(*(element.colours for element in self.elements))
-
-    @property
     def mass(self):
         """The total mass of this molecule."""
 
         return sum(element.mass for element in self.elements)
 
+    @property
+    def spectrum(self):
+        """The overall spectrum of this molecule."""
+
+        return Spectrum.bond_many([element.spectrum for element in self.elements])
+
     def can_bond(self, other):
-        """Return whether these two molecules may be merged."""
+        return self.spectrum.can_bond(other.spectrum)
 
-        # Ensure each colour will only be present once in the new molecule
-        # by checking the intersection is empty
-        return len(self.colours & other.colours) == 0
-
-    def __add__(self, other):
-        """Merge these two molecules."""
-
-        if not self.can_bond(other):
-            raise BondingException(f"{self} cannot be bonded to {other}")
-
+    def bond(self, other):
         return Molecule(self.elements + other.elements)
+
+    async def send_embed(self, messageable):
+        embed = discord.Embed(title=self.name.title())
+        embed.add_field(name="Formula", value=self.formula)
+        element_list = "\n".join(f"{element.symbol}: {element.name}" for element in self.elements)
+        embed.add_field(name="Elements", value=element_list)
+        embed.add_field(name="Spectrum", value=self.spectrum.emoji, inline=False)
+        await messageable.send(embed=embed)
 
 
 def react(elements):

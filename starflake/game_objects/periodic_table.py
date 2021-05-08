@@ -1,13 +1,16 @@
 from dataclasses import dataclass
 from typing import List
 
+import discord
+
+from starflake.game_objects import RandomisableGameObject, EmbeddableGameObject
 from starflake.game_objects.constants import TABLE_GROUPS, TABLE_PERIODS
 from starflake.game_objects.element import Element
 from starflake.utils import group_by
 
 
 @dataclass(repr=False, frozen=True)
-class PeriodicTable:
+class PeriodicTable(RandomisableGameObject, EmbeddableGameObject):
     """A periodic table of elements."""
 
     elements: List[Element]
@@ -66,3 +69,7 @@ class PeriodicTable:
         """An iterator through (group number, [elements]) for all groups."""
 
         return group_by(self.elements, lambda element: element.group_number)
+
+    async def send_embed(self, messageable):
+        embed = discord.Embed(title="Periodic Table", description=f"```\n{self}\n```")
+        await messageable.send(embed=embed)

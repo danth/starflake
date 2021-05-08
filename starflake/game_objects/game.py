@@ -4,19 +4,20 @@ from functools import wraps
 
 import jsons
 
+from starflake.game_objects import RandomisableGameObject
 from starflake.game_objects.periodic_table import PeriodicTable
 
 
 @dataclass(frozen=True)
-class Game:
+class Game(RandomisableGameObject):
     """Data relating to an individual game."""
 
     id_: int
     periodic_table: PeriodicTable
 
     @classmethod
-    def new(cls, id_):
-        """Initialise a new game with the given ID."""
+    def random(cls, id_):
+        """Generate a new game with the given ID."""
 
         periodic_table = PeriodicTable.random()
 
@@ -56,7 +57,7 @@ class GameStore:
     def create(self, id_):
         """Create a new game."""
 
-        return Game.new(id_)
+        return Game.random(id_)
 
     @_cached
     def load(self, id_):

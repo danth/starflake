@@ -3,7 +3,8 @@ import asyncio
 from discord.ext import commands
 
 from starflake.converters.element import ElementConverter
-from starflake.game_objects.molecule import BondingException, Molecule
+from starflake.game_objects import BondingException
+from starflake.game_objects.molecule import Molecule
 
 
 class MoleculeConverter(commands.Converter):
