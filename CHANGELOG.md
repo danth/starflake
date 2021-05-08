@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.14.0 (2021-05-08)
+### Feature
+* **Game:** Send documentation to #lore ([`660e726`](https://github.com/danth/starflake/commit/660e726287022c44fba740858e4d1fe6928d670b))
+
 ## v0.13.0 (2021-05-08)
 ### Feature
 * **Game:** Add +delete_game command ([`78f8c14`](https://github.com/danth/starflake/commit/78f8c14c88ee6f0a245fc580bc2dff077adfe480))
