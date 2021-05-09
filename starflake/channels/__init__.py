@@ -3,15 +3,15 @@ from dataclasses import dataclass
 
 import discord
 
-from starflake.game_objects.game import Game
+from starflake.game_objects.universe import Universe
 
 
 @dataclass(frozen=True)
 class Channel(ABC):
-    """A channel created during game setup."""
+    """A channel created during universe setup."""
 
     category: discord.CategoryChannel
-    game: Game
+    universe: Universe
 
     @property
     @abstractmethod

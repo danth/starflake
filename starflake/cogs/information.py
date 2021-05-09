@@ -4,19 +4,19 @@ from discord.ext import commands
 from starflake.converters.element import ElementConverter
 from starflake.converters.molecule import MoleculeConverter
 from starflake.converters.reactants import ReactantsConverter
-from starflake.game_objects.game import with_game
+from starflake.game_objects.universe import with_universe
 from starflake.game_objects.molecule import react
 
 
 class InformationCog(commands.Cog, name="Information"):
     def cog_check(self, context):
-        return with_game(context)
+        return with_universe(context)
 
     @commands.command()
     async def periodic_table(self, context):
-        """Display the game's periodic table."""
+        """Display the periodic table."""
 
-        await context.game.periodic_table.send_embed(context)
+        await context.universe.periodic_table.send_embed(context)
 
     @commands.command()
     async def elements(self, context):
@@ -24,7 +24,7 @@ class InformationCog(commands.Cog, name="Information"):
 
         embed = discord.Embed(title="Elements")
 
-        for group_number, group in context.game.periodic_table.groups:
+        for group_number, group in context.universe.periodic_table.groups:
             element_list = "\n".join(
                 f"{element.symbol}: {element.name}" for element in group
             )

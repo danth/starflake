@@ -32,7 +32,7 @@ class LoreChannel(DocumentChannel):
             f"There are {TABLE_GROUPS * TABLE_PERIODS} chemical elements in Starflake. "
             "Similarly to real life, they can be written in a periodic table:"
         )
-        await self.game.periodic_table.send_embed(messageable)
+        await self.universe.periodic_table.send_embed(messageable)
 
         await messageable.send(
             "However, the formation of compounds is different. Rather than using "
@@ -40,7 +40,7 @@ class LoreChannel(DocumentChannel):
             f"{len(COLOURS)} coloured spots."
         )
 
-        elements, compound = make_example_compound(self.game.periodic_table, 2)
+        elements, compound = make_example_compound(self.universe.periodic_table, 2)
         await elements[0].send_embed(messageable)
         await messageable.send(
             "The number of colours per element increases with each new period. "
@@ -59,14 +59,14 @@ class LoreChannel(DocumentChannel):
             "it can't gain any more bonds."
         )
 
-        elements, compound = make_example_compound(self.game.periodic_table, 3)
+        elements, compound = make_example_compound(self.universe.periodic_table, 3)
         await messageable.send(
             "Of course, molecules can contain more than two elements - reacting "
             f"{elements[0].name}, {elements[1].name} and {elements[2].name} produces:"
         )
         await compound.send_embed(messageable)
 
-        heaviest_element = self.game.periodic_table.elements[-1]
+        heaviest_element = self.universe.periodic_table.elements[-1]
         await messageable.send(
             "Heavier molecules have a stronger attractive force, so during a reaction "
             "they will bond before lighter molecules. When reading the periodic table "
