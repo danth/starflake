@@ -67,9 +67,7 @@ class UniverseCog(commands.Cog, name="Universe"):
         """Delete the current universe and all related channels."""
 
         # Shown in the audit log
-        reason = (
-            f"{context.author.name} asked for universe {context.universe.id_} to be deleted."
-        )
+        reason = f"{context.author.name} asked for universe {context.universe.id_} to be deleted."
 
         for channel in context.channel.category.text_channels:
             await channel.delete(reason=reason)

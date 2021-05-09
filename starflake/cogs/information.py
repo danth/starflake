@@ -4,8 +4,8 @@ from discord.ext import commands
 from starflake.converters.element import ElementConverter
 from starflake.converters.molecule import MoleculeConverter
 from starflake.converters.reactants import ReactantsConverter
-from starflake.game_objects.universe import with_universe
 from starflake.game_objects.molecule import react
+from starflake.game_objects.universe import with_universe
 
 
 class InformationCog(commands.Cog, name="Information"):
