@@ -51,10 +51,10 @@ class DocumentChannel(Channel):
     def overwrites(self):
         return {
             self.category.guild.default_role: discord.PermissionOverwrite(
-                send_messages=False, add_reactions=False, manage_messages=False
+                send_messages=False, add_reactions=False
             ),
             self.category.guild.me: discord.PermissionOverwrite(
-                send_messages=True, add_reactions=True, manage_messages=True
+                send_messages=True, add_reactions=True
             ),
         }
 
