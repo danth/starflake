@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.15.1 (2021-07-21)
+| Type | Change |
+| --- | --- |
+| Fix | Don't set unnecessary permission overrides ([`39584a9`](https://github.com/danth/starflake/commit/39584a94fb8eacdcf2392b17ac2f062aacf27f3f)) |
+| Documentation | Create basic logo ([`caccf63`](https://github.com/danth/starflake/commit/caccf634faf60994ba3b11aaeab9677f4a7eefde))<br>**Information:** Describe how to write parameters ([`63c4a73`](https://github.com/danth/starflake/commit/63c4a733d2614fb8565f03db32ebeb7fe85da108)) |
+
 ## v0.15.0 (2021-05-08)
 ### Feature
 * **Information:** Add +products to view the products of a reaction ([`95bfb77`](https://github.com/danth/starflake/commit/95bfb77dde5caaa803d413b5c79c69f54c896b2f))
